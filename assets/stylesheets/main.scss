@@ -7,10 +7,12 @@
 
 @import 'base/reset';
 @import 'base/typography';
+@import 'base/layout';
+
 
 @import 'layout/header';
 
-// @import 'components/..';
+@import 'components/puzzle';
 
 // @import 'pages/..';
 
