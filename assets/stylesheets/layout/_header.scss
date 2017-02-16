@@ -1,0 +1,13 @@
+.c-header {
+  padding: 0 20px;
+  background-color: rgb(246, 129, 37);
+
+  @include e('title') {
+    padding: 30px;
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5em;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+  }
+}
