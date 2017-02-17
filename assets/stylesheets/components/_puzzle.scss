@@ -1,3 +1,88 @@
+
+$hexagon-config: conf($conf-c-puzzle, hexagon);
+$hexagon-width:  conf($hexagon-config, width);
+$hexagon-height: conf($hexagon-config, height);
+
+$columns: 8;
+
+$paddingLeft: 43px;
+$hexagonTranslation: 22px;
+
 .c-puzzle {
   position: relative;
+
+    // .c-puzzle__image
+    @include e('image') {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    // .c-puzzle__image
+    @include e('image') {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    // .c-puzzle__hexagon
+    @include e('hexagon') {
+      position: absolute;
+      top: 43px;
+      border: .5px dashed #fff;
+      width:  conf($hexagon-config, width);
+      height: conf($hexagon-config, height);
+
+        /// *************      Hexagon translation      *************
+        ///
+        /// The puzzle contains hexagons that are distribuited in rows containing
+        /// five 5 or four 4 children per row
+
+        /// The first two childrean are the two images of the puzzle
+        /// (Puzzle_solved and unsolved respectively). For this reason
+        /// the counter starts from the number 2
+
+        /// The first two rows contain (5 + 4 = 9) children that are already
+        /// positioned because of the top property
+
+        /// Starting from the child number eleven (2 + 9 = 11), translate by 100%
+        /// in the Y direction the intended children
+
+        &:nth-child(n+11):nth-child(-n+19) {
+          transform: translateY(100%);
+        }
+
+        &:nth-child(n+20):nth-child(-n+28) {
+          transform: translateY(200%);
+        }
+
+        &:nth-child(n+29):nth-child(-n+37) {
+          transform: translateY(300%);
+        }
+
+        &:nth-child(n+38):nth-child(-n+42) {
+          transform: translateY(400%);
+        }
+
+    }
+
+      /// *************      Column Distribution      *************
+      ///
+      /// The puzzle has 8 columns and a $paddingLeft pixels
+      /// Starting from column number 2, each hexagon is translated to the left
+      /// of $hexagonTranslation pixels
+      ///
+      /// The left position of an hexagon is equal to:
+      ///
+      ///    $paddingLef + ($hexagon-width - $hexagonTranslation) * columnNum
+
+      @for $i from 0 through $columns {
+        @include e('column-#{$i + 1}') {
+            left: $paddingLeft + ($hexagon-width - $hexagonTranslation) * $i;
+            @if $i % 2 != 0 {
+              top: 91px;
+            }
+        }
+      }
+
 }
