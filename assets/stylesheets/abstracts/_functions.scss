@@ -1,0 +1,19 @@
+
+/// Configuration
+/// @access public
+/// @param {Map} $map - A map
+/// @param {String} $key - A map's key
+
+@function conf($map, $key) {
+
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $map.";
+  @return null;
+}
+
+
+
+
