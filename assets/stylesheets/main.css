@@ -1,0 +1,65 @@
+html {
+  font-size: 100%; }
+
+body {
+  font-family: 'Arimo', sans-serif; }
+
+body {
+  background-color: #1d1d1d; }
+
+.c-header {
+  padding: 0 20px; }
+  .c-header__title {
+    padding: 30px;
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5em;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); }
+
+.c-puzzle {
+  position: relative; }
+  .c-puzzle__image {
+    position: absolute;
+    top: 0;
+    left: 0; }
+  .c-puzzle__image {
+    position: absolute;
+    top: 0;
+    left: 0; }
+  .c-puzzle__hexagon {
+    position: absolute;
+    top: 43px;
+    width: 106px;
+    height: 98px; }
+    .c-puzzle__hexagon:nth-child(n+11):nth-child(-n+19) {
+      transform: translateY(100%); }
+    .c-puzzle__hexagon:nth-child(n+20):nth-child(-n+28) {
+      transform: translateY(200%); }
+    .c-puzzle__hexagon:nth-child(n+29):nth-child(-n+37) {
+      transform: translateY(300%); }
+    .c-puzzle__hexagon:nth-child(n+38):nth-child(-n+42) {
+      transform: translateY(400%); }
+  .c-puzzle__column-1 {
+    left: 43px; }
+  .c-puzzle__column-2 {
+    left: 127px;
+    top: 91px; }
+  .c-puzzle__column-3 {
+    left: 211px; }
+  .c-puzzle__column-4 {
+    left: 295px;
+    top: 91px; }
+  .c-puzzle__column-5 {
+    left: 379px; }
+  .c-puzzle__column-6 {
+    left: 463px;
+    top: 91px; }
+  .c-puzzle__column-7 {
+    left: 547px; }
+  .c-puzzle__column-8 {
+    left: 631px;
+    top: 91px; }
+  .c-puzzle__column-9 {
+    left: 715px; }
+
+/*# sourceMappingURL=main.css.map */
