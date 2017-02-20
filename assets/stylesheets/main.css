@@ -62,4 +62,7 @@ body {
   .c-puzzle__column-9 {
     left: 715px; }
 
+.c-pieces {
+  min-height: 250px; }
+
 /*# sourceMappingURL=main.css.map */
