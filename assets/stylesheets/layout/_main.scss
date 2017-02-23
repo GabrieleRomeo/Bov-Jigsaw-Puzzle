@@ -1,0 +1,16 @@
+
+$width: 100%;
+$main-width: 70%;
+$aside-width: $width - $main-width;
+
+.l-main {
+  display: flex;
+
+  & main {
+    width: $main-width;
+  }
+
+  & aside {
+    width: $aside-width;
+  }
+}

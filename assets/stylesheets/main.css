@@ -1,3 +1,18 @@
+.c-timer__input--trigger {
+  display: none; }
+
+.c-timer__list, .c-timer__paragraph {
+  text-transform: capitalize; }
+
+.c-timer__label, .c-timer__icon {
+  cursor: pointer; }
+
+.c-timer__icon--restart, .c-timer__icon--pause {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); }
+
+.c-timer__icon--restart, .c-timer__icon--pause, .c-timer__clock {
+  border-radius: 50%; }
+
 html {
   font-size: 100%; }
 
@@ -15,6 +30,13 @@ body {
     font-size: 2.5em;
     color: white;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); }
+
+.l-main {
+  display: flex; }
+  .l-main main {
+    width: 70%; }
+  .l-main aside {
+    width: 30%; }
 
 .c-puzzle {
   position: relative; }
@@ -64,5 +86,73 @@ body {
 
 .c-pieces {
   min-height: 250px; }
+
+.c-timer {
+  position: relative;
+  overflow: hidden;
+  margin-right: 20px;
+  font-family: Anaheim, sans-serif;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5); }
+  .c-timer__nav {
+    padding-bottom: 48px;
+    margin-bottom: 11px;
+    font-size: 1.3em;
+    border-bottom: 2px solid #159300; }
+  .c-timer__list {
+    display: flex;
+    justify-content: space-around; }
+  .c-timer__panel {
+    transform: translateX(100%);
+    transition: tranform 1s ease-out; }
+    .c-timer__panel--isActive {
+      transform: translateX(); }
+  .c-timer__header {
+    position: relative; }
+  .c-timer__icon {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 2px solid #fff; }
+    .c-timer__icon--restart {
+      top: 0;
+      right: 0;
+      padding: 10px; }
+    .c-timer__icon--pause {
+      top: calc(50% - 20px);
+      left: calc(50% - 16px);
+      padding: 10px; }
+    .c-timer__icon:before {
+      font-size: 1.2em; }
+    .c-timer__icon:hover {
+      background-color: rgba(255, 255, 255, 0.24); }
+  .c-timer__paragraph {
+    padding: 2px 0;
+    font-size: x-large; }
+    .c-timer__paragraph--medium {
+      font-size: medium; }
+  .c-timer__span--isActive {
+    color: white; }
+  .c-timer__body {
+    display: flex;
+    justify-content: center; }
+  .c-timer__counterClock {
+    padding: 20px 0;
+    font-size: 4em;
+    text-align: center; }
+  .c-timer__clock {
+    position: relative;
+    width: 80%;
+    height: 300px;
+    background-color: transparent; }
+    .c-timer__clock svg {
+      width: 100%;
+      height: 100%; }
+  .c-timer .c-timer__input--trigger:nth-of-type(1):checked ~ .c-timer__tab div:nth-of-type(1),
+  .c-timer .c-timer__input--trigger:nth-of-type(2):checked ~ .c-timer__tab div:nth-of-type(2) {
+    transform: translateX(0);
+    color: #fff; }
+  .c-timer .c-timer__input--trigger:nth-of-type(1):checked ~ .c-timer__nav .c-timer__item:nth-of-type(1),
+  .c-timer .c-timer__input--trigger:nth-of-type(2):checked ~ .c-timer__nav .c-timer__item:nth-of-type(2) {
+    color: white; }
 
 /*# sourceMappingURL=main.css.map */
