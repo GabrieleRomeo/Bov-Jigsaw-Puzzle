@@ -9,3 +9,26 @@ $conf-c-puzzle: (
     height: 98px
   )
 );
+
+
+//------------------------------------------------------------------------------
+//                       Timer Configuration
+//------------------------------------------------------------------------------
+
+$conf-c-timer: (
+  color: rgba(255, 255, 255, .5),
+  counterClock-font-size: 4em,
+  active-elements: (
+    txt-color: rgba(255, 255, 255, 1),
+    icon-bg-color: rgba(255, 255, 255, .24)
+  ),
+  navigation: (
+    font-size: 1.3em,
+    border-bottom: 2px solid rgb(21, 147, 0)
+  ),
+  clock: (
+    width: 80%,
+    height: 300px,
+    bg-color: rgba(0, 0, 0, 0)
+  )
+);
