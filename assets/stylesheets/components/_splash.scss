@@ -1,0 +1,128 @@
+
+// ----------------------------------------------------------------------
+//                       Game Splash Component
+// ----------------------------------------------------------------------
+
+$splash-title-color: conf($conf-c-splash, title-color);
+
+$splash-conf-inputs: conf($conf-c-splash, input);
+$splash-input-border-radius: conf($splash-conf-inputs, border-radius);
+
+
+$splash-conf-button: conf($conf-c-splash, button);
+$splash-button-color: conf($splash-conf-button, color);
+$splash-button-hv-color: conf($splash-conf-button, hover-color);
+$splash-button-bg-color: conf($splash-conf-button, background-color);
+$splash-button-hv-bg-color: conf($splash-conf-button, hover-background-color);
+
+.c-splash {
+  position: relative;
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+    // .c-splash__body
+    @include e('body') {
+      position: absolute;
+      width: 40%;
+      top: 10%;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    // .c-splash__footer
+    @include e('footer') {
+      position: absolute;
+      bottom: 10%;
+      color: white();
+    }
+
+    // .c-splash__title
+    @include e('title') {
+      position: absolute;
+      top: 0;
+      color: $splash-title-color;
+    }
+
+    // .c-splash__list
+    @include e('list') {
+
+    }
+
+    // .c-splash__item
+    @include e('item') {
+      margin: 10px;
+      padding: 10px;
+      border-radius: $splash-input-border-radius;
+      color: white(.4);
+      background-color: rgba(0, 0, 0, 0.18);
+      transition: color .3s linear;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        & i {
+          position: absolute;
+        }
+
+        &:last-child {
+          width: 55%;
+          margin: auto;
+        }
+    }
+
+    // .c-splash__label
+    @include e('label') {
+      @extend %pointer;
+      display: inline-block;
+      width: 100%;
+      margin-left: 20%;
+    }
+
+    // .c-splash__input
+    @include e('input') {
+
+      // .c-splash__input--trigger
+      @include m('trigger') {
+        @extend %none;
+
+          &:nth-of-type(1):checked ~ .c-splash__list .c-splash__item:nth-of-type(1),
+          &:nth-of-type(2):checked ~ .c-splash__list .c-splash__item:nth-of-type(2),
+          &:nth-of-type(3):checked ~ .c-splash__list .c-splash__item:nth-of-type(3) {
+            border: 1px solid white(.3);
+            color: #fff;
+          }
+      }
+
+    }
+
+    // .c-splash__button
+    @include e('button') {
+
+      @include m('submit') {
+        @extend %pointer;
+        width: 100%;
+        background-color: $splash-button-bg-color;
+        color: $splash-button-color;
+        text-align: center;
+        padding: 6px;
+        border: 0;
+        border-radius: $splash-input-border-radius;
+
+          &:hover {
+            color: $splash-button-hv-color;
+            background-color: $splash-button-hv-bg-color;
+          }
+      }
+    }
+/*
+    .c-splash__input--trigger:nth-of-type(1):checked ~ .c-splash__list .c-splash__item:nth-of-type(1) {
+      color: #fff;
+    }*/
+}
