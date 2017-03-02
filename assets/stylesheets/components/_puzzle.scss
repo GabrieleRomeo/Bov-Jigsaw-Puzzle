@@ -18,11 +18,13 @@ $hexagonTranslation: 22px;
       left: 0;
     }
 
-    // .c-puzzle__image
-    @include e('image') {
-      position: absolute;
-      top: 0;
-      left: 0;
+    // .c-puzzle__img
+    @include e('img') {
+
+        // .c-puzzle__image--solved
+        @include m('solved') {
+          transform: skewX(-98deg);
+        }
     }
 
     // .c-puzzle__hexagon
