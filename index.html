@@ -29,18 +29,72 @@
       </p>
     <![endif]-->
 
-
     <header class="c-header" role="banner">
       <h1 class="c-header__title">Jigsaw Drag & Drop Puzzle</h1>
     </header>
 
     <div class="l-main">
 
+      <section class="c-splash">
+        <div class="c-splash__header">
+          <img class="c-puzzle__img
+                      c-puzzle__img--solved"
+               src="assets/img/_Puzzle_solved.png" alt="Puzzle">
+          <h2 class="c-splash__title">GAME START - Choose your level</h2>
+        </div>
+        <div class="c-splash__body">
+          <form data-submit="startGame">
+
+            <!-- Triggers -->
+            <input class="c-splash__input c-splash__input--trigger"
+                   id="c-splash__level--0"
+                   name="c-splash__level"
+                   value="0"
+                   type="radio" checked>
+            <input class="c-splash__input c-splash__input--trigger"
+                   id="c-splash__level--1"
+                   name="c-splash__level"
+                   value="1"
+                   type="radio">
+            <input class="c-splash__input c-splash__input--trigger"
+                   id="c-splash__level--2"
+                   name="c-splash__level"
+                   value="2"
+                   type="radio">
+
+            <ul class="c-splash__list" data-click="changeGameLevel">
+              <li class="c-splash__item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <label class="c-splash__label" for="c-splash__level--0">Easy</label>
+              </li>
+              <li class="c-splash__item">
+                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <label class="c-splash__label" for="c-splash__level--1">Medium</label>
+              </li>
+              <li class="c-splash__item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <label class="c-splash__label" for="c-splash__level--2">Hard</label>
+              </li>
+              <li class="c-splash__item">
+                <div class="c-splash__button" type="submit">
+                  <input class="c-splash__button--submit" type="submit" value="play">
+                </div>
+              </li>
+              </ul>
+          </form>
+        </div>
+        <div class="c-splash__footer">
+          <p class="c-splash__description" id="levelDescription">
+            Time to complete 09:00 minutes
+          </p>
+        </div>
+      </section>
+
       <main role="main">
 
         <section class="c-puzzle">
-          <img class="c-puzzle__img c-puzzle__img--solved" src="assets/img/_Puzzle_solved.png" alt="Puzzle">
-          <img class="c-puzzle__img c-puzzle__img--unsolved" src="assets/img/_Puzzle_bg_unsolved.png" alt="Puzzle">
+          <img class="c-puzzle__img c-puzzle__img--unsolved"
+               src="assets/img/_Puzzle_bg_unsolved.png" alt="Puzzle">
           <div class="c-puzzle__hexagon
                       c-puzzle__column-1"
                id="hexagon_5" data-piece="45">
@@ -558,9 +612,9 @@
 
     </div>
 
-    <footer role="contentinfo">
-      &copy; 2017 Gabriele Romeo for <a class="c-link" title="Bov Academy" href="https://bovacademy.com">Bov</a> with
-      <i class="fa fa-heartbeat" aria-hidden="true"></i>
+    <footer class="c-footer" role="contentinfo">
+      &copy; 2017 Gabriele Romeo for <a class="c-footer__link" title="Bov Academy" href="https://bovacademy.com">Bov</a> with
+      <i class="c-footer__icon fa fa-heartbeat" aria-hidden="true"></i>
     </footer>
 
     <script src="assets/js/app.js"></script>

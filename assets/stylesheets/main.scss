@@ -3,6 +3,7 @@
 @import 'abstracts/functions';
 @import 'abstracts/mixins';
 @import 'abstracts/placeholders';
+@import 'abstracts/animations';
 
 // @import 'vendors/..'
 
@@ -13,12 +14,12 @@
 
 @import 'layout/header';
 @import 'layout/main';
+@import 'layout/footer';
 
+@import 'components/splash';
 @import 'components/puzzle';
 @import 'components/timer';
 
 // @import 'pages/..';
 
 // @import 'themes/..';
-
-

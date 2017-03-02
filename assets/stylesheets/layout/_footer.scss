@@ -1,0 +1,26 @@
+
+$link-color: rgb(33, 150, 243);
+
+.c-footer {
+  padding: 30px;
+  color: white();
+  font-size: .8em;
+
+    @include e('link') {
+      text-decoration: none;
+      color: $link-color;
+
+        &:hover {
+          color: invert($link-color);
+        }
+    }
+
+    @include e('icon') {
+
+      &:before {
+        color: rgb(255, 0, 0);
+        -webkit-animation: double-flash 3s ease infinite;
+        animation: double-flash 3s ease infinite;
+      }
+    }
+}
