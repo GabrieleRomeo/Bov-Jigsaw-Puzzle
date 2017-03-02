@@ -1,13 +1,22 @@
 
- @keyframes fadeInLeft {
-    0% {
-    opacity: 0;
-    -webkit-transform: translate3d(-2000px, 0, 0);
-    transform: translate3d(-2000px, 0, 0);
-    }
-    100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-    }
+@keyframes fadeInLeft {
+  0% {
+  opacity: 0;
+  -webkit-transform: translate3d(-2000px, 0, 0);
+  transform: translate3d(-2000px, 0, 0);
   }
+  100% {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+  }
+}
+
+@keyframes double-flash {
+  0%        { opacity: 1; }
+  16.66667% { opacity: 0; }
+  33.33333% { opacity: 1; }
+  50%       { opacity: 0; }
+  66.66667% { opacity: 1; }
+  100%      { opacity: 1; }
+}
