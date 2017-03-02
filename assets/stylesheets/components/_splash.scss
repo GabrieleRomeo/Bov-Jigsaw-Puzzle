@@ -17,6 +17,7 @@ $splash-button-hv-bg-color: conf($splash-conf-button, hover-background-color);
 
 .c-splash {
   position: relative;
+  top: 20px;
   -webkit-animation-name: fadeInLeft;
   animation-name: fadeInLeft;
   -webkit-animation-duration: 1s;
