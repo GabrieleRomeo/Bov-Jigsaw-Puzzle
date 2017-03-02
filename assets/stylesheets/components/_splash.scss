@@ -109,10 +109,11 @@ $splash-button-hv-bg-color: conf($splash-conf-button, hover-background-color);
       @include m('submit') {
         @extend %pointer;
         width: 100%;
+        padding: 6px;
         background-color: $splash-button-bg-color;
         color: $splash-button-color;
         text-align: center;
-        padding: 6px;
+        text-transform: uppercase;
         border: 0;
         border-radius: $splash-input-border-radius;
 
