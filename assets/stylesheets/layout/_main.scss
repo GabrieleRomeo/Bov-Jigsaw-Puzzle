@@ -6,6 +6,7 @@ $aside-width: $width - $main-width;
 .l-main {
   display: flex;
   justify-content: center;
+  overflow: hidden;
 
   & main,
   & aside {
