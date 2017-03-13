@@ -1,11 +1,12 @@
 
 $width: 100%;
-$main-width: 70%;
+$main-width: 83%;
 $aside-width: $width - $main-width;
 
 .l-main {
   display: flex;
   justify-content: center;
+  overflow: hidden;
 
   & main,
   & aside {
@@ -13,10 +14,25 @@ $aside-width: $width - $main-width;
   }
 
   & main {
+    position: relative;
     width: $main-width;
+
+    @media screen and(min-width: $media-min-width) {
+      width: 70%;
+    }
   }
 
   & aside {
     width: $aside-width;
+    padding: 10px;
+    font-size: .8em;
+    background-color: black();
+    z-index: z('tooltip');
+
+    @media screen and(min-width: $media-min-width) {
+      width: 30%;
+      padding: 30px;
+      font-size: initial;
+    }
   }
 }

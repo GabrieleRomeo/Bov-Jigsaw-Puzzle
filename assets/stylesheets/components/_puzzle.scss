@@ -10,6 +10,7 @@ $hexagonTranslation: 22px;
 
 .c-puzzle {
   position: relative;
+  margin-bottom: 2em;
 
     // .c-puzzle__image
     @include e('image') {
@@ -23,9 +24,18 @@ $hexagonTranslation: 22px;
 
         // .c-puzzle__image--solved
         @include m('solved') {
-          transform: skewX(-98deg);
+          position: absolute;
+          top: 0;
+          left: 0;
+          animation: fromLeft 1s cubic-bezier(0, 0, 0.2, 1) forwards;
+        }
+
+        // .c-puzzle__image--disabled
+        @include m('disabled') {
+          @extend %imgDisabled;
         }
     }
+
 
     // .c-puzzle__hexagon
     @include e('hexagon') {
@@ -94,6 +104,36 @@ $hexagonTranslation: 22px;
 
 }
 
+
 .c-pieces {
-  min-height: 250px;
+  min-height: 430px;
+  padding: 40px;
+  transition: border .5s ease-out;
+
+  // c-pieces--dashed
+  @include m('dashed') {
+    border: 4px dashed rgba(255, 255, 255, 0.18);
+  }
+
+  // c-pieces__piece
+  @include e('piece') {
+    color: red;
+
+        // c-pieces__piece--falling
+      @include m('falling') {
+        animation: fallingDown 1s cubic-bezier(0.55, -0.04, 0.91, 0.94) forwards;
+        /*transform origin is moved to the bottom left corner*/
+        transform-origin: 0% 100%;
+      }
+
+      // c-pieces__piece--fromTop
+      @include m('fromTop') {
+        animation: fromTop .3s linear forwards;
+      }
+
+      // c-pieces__piece--disabled
+      @include m('disabled') {
+        @extend %imgDisabled;
+      }
+  }
 }

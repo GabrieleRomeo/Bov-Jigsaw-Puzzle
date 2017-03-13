@@ -18,3 +18,8 @@
 %circular {
   border-radius: 50%;
 }
+
+%imgDisabled {
+  background-blend-mode: luminosity;
+  mix-blend-mode: luminosity;
+}

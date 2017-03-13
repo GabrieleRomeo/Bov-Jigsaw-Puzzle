@@ -97,13 +97,36 @@ App.namespace('Utils').DOM = (function() {
         return success;
     };
 
+    /**
+     * Insert a new node after an existing node in the DOM
+     * @param  {Node}  newNode The element you wish to insert
+     * @param  {Node}  refNode The existing node in the DOM
+     * @return {Node}  The element that was inserted
+     */
+    var insertAfter = function(newNode, refNode) {
+        return refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
+    };
+
+
+    /**
+     * A shorthand for the innerHTML method
+     * @param  {Node}  target An HTML node
+     * @param  {Value} value  An value in HTML format
+     */
+
+    var innerH = function( target, value ) {
+        target.innerHTML = value;
+    };
+
     return {
         $: $,
         $$: $$,
         id: id,
         removeAll: removeAll,
         removeAllBySelector: removeAllBySelector,
-        swapElements: swapElements
+        swapElements: swapElements,
+        insertAfter: insertAfter,
+        innerH: innerH
     };
 })();
 
@@ -218,7 +241,7 @@ App.namespace('Utils').Obj = (function() {
     };
 
     // https://gomakethings.com/vanilla-javascript-version-of-jquery-extend/
-    var extend = function () {
+    var extend = function() {
 
         var extended = {};
         var toString = toString;
@@ -256,8 +279,25 @@ App.namespace('Utils').Obj = (function() {
 
     };
 
+    /**
+     * Generate random GUIDs
+     * @return {Value}
+     */
+
+    var guid = function() {
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+             s4() + '-' + s4() + s4() + s4();
+    };
+
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
     return {
-        extend: extend
+        extend: extend,
+        guid: guid
     };
 })();
 
@@ -279,7 +319,7 @@ App.namespace('Utils').Events = (function() {
         var idx;
 
         if (typeof this.events[event] === 'object') {
-            idx = App.Utils.indexOf( this.events[event], listener );
+            idx = App.Utils.Array.indexOf( this.events[event], listener );
 
             if ( idx > -1 ) {
                 this.events[event].splice( idx, 1 );
@@ -318,50 +358,143 @@ App.namespace('Utils').Events = (function() {
         target.addEventListener(type, callback, !!useCapture);
     };
 
+    /***************************************************************************
+     *                  CSS Animation Events with JavaScript
+     ***************************************************************************
+     *
+     * animationstart     - listener function fires as soon as the animation
+     *                      begins
+     *
+     * animationiteration - listener function fires at the beginning of every
+     *                      subsequent animation iteration
+     *
+     * animationend       - listener function fires at the end of the animation
+     *
+     *
+     *  all browsers have their prefixes
+     *
+     * No prefix - animationstart, animationiteration, animationend
+     * Webkit    - webkitAnimationStart, webkitAnimationIteration, webkitAnimationEnd
+     * Mozilla   - mozAnimationStart, mozAnimationIteration, mozAnimationEnd
+     * MS        - MSAnimationStart, MSAnimationIteration, MSAnimationEnd
+     * O         – oAnimationStart, oAnimationIteration, oAnimationEnd
+     */
+
+    var pfx = ['webkit', 'moz', 'MS', 'o', ''];
+
+    var $prefixedOn = function ( target, type, callback, useCapture ) {
+
+        for ( var p = 0, length = pfx.length; p < length; p++ ) {
+            if ( !pfx[p] ) {
+                type = type.toLowerCase();
+            }
+            target.addEventListener( pfx[p]+type, callback, !!useCapture );
+        }
+    };
+
     return {
         Emitter: EventEmitter,
-        $on: $on
+        $on: $on,
+        $prefixedOn: $prefixedOn
     };
 })();
 
 App.namespace('DateTime').Timer = (function(window) {
 
-    function Timer(time) {
-        var self = this;
-        this.paused = true;
-        this.timerId = null;
-        this.time = time;
-        this.info = {};
-        this.tick = function() {
-
-            var minutes = parseInt(self.time / 60, 10);
-            var seconds = parseInt(self.time % 60, 10);
-
-            self.info['minutes'] = minutes < 10 ? '0' + minutes : minutes;
-            self.info['seconds'] = seconds < 10 ? '0' + seconds : seconds;
-
-            self.emit( 'tick' );
-
-            if ( --self.time < 0 ) {
-                window.clearInterval( self.timerId );
-                self.emit( 'elapsedTime' );
-            }
-
-        };
+    function Timer( time, step ) {
+        this.isStarted   = false;
+        this.paused      = true;
+        this.timerId     = null;
+        this.time        = Math.floor(time);
+        this.ID          = App.Utils.Obj.guid();
+        this.step        = step || 1;
+        this.initialTime = this.getCurrentTime();
     }
 
     Timer.prototype = new App.Utils.Events.Emitter();
     Timer.prototype.constructor = Timer;
 
+    Timer.prototype.getHours = function() {
+        return Math.floor( this.time / 3600 );
+    };
+
+    Timer.prototype.getMinutes = function( doubleZero ) {
+
+        var h = this.getHours();
+        var m = Math.floor(( this.time - ( h * 3600 )) / 60 );
+
+        if ( !!doubleZero && m < 10 ) {
+            m = '0' + m;
+        }
+
+        return m;
+    };
+
+    Timer.prototype.getSeconds = function( doubleZero ) {
+
+        var h = this.getHours();
+        var m = this.getMinutes(true);
+        var s = this.time - ( h * 3600 ) - ( m * 60 );
+
+        if ( !!doubleZero && s < 10 ) {
+            s = '0' + s;
+        }
+
+        return s;
+    };
+
+    Timer.prototype.getCurrentTime = function() {
+
+        var h = this.getHours();
+        var m = this.getMinutes(true);
+        var s = this.getSeconds(true);
+
+        return h + ':' + m + ':' + s;
+    };
+
+    Timer.prototype.getInitialTime = function() {
+        return this.initialTime;
+    };
+
+    Timer.prototype.setTime = function( time, step ) {
+        // Prevent from changing a running timer
+        if ( !this.isStarted ) {
+            return;
+        }
+
+        this.time = Math.floor(time);
+        this.step = step || 1;
+    };
+
+    Timer.prototype.count = function() {
+
+        var h = this.getHours();
+        var m = this.getMinutes(true);
+        var s = this.getSeconds(true);
+        var c = this.getCurrentTime();
+
+        this.emit( this.ID + '-tick', c, h, m, s );
+
+        this.time -= this.step;
+
+        if ( this.time < 0 ) {
+            window.clearInterval( this.timerId );
+            this.emit( this.ID + '-elapsedTime' );
+        }
+    };
+
     Timer.prototype.start = function() {
+        this.isStarted = true;
         this.resume();
     };
 
     Timer.prototype.resume = function() {
+
         var self = this;
 
         if ( this.paused && this.time > 0 ) {
-            this.timerId = window.setInterval( self.tick, 1000 );
+            this.timerId = window.setInterval( self.count.bind(self),
+                                               self.step * 1000 );
             this.paused = false;
         }
     };

@@ -1,0 +1,101 @@
+
+
+// .c-modal
+.c-modal {
+  position: fixed;
+  display: flex;
+  top: 0;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.64);
+
+    // .c-modal--full
+    @include m('full') {
+      width: 100%;
+      height: 100vh;
+    }
+
+    // .c-modal--interaction
+    @include m('interaction') {
+      z-index: z('under'); // -1
+    }
+
+    // .c-modal__header
+    @include e('header') {
+      margin-bottom: 3em;
+      text-align: center;
+    }
+
+    // .c-modal__title
+    @include e('title') {
+      font-family: Helvetica, Arial, Sans-Serif;
+      font-size: 1.5em;
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
+
+        // .c-modal__title--zoomIN
+        @include m('zoomIN') {
+          -webkit-animation-name: zoomIN;
+          animation-name: zoomIN;
+          -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+          -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+        }
+
+        // .c-modal__title--flash
+        @include m('flash') {
+          -webkit-animation-name: flash;
+          animation-name: flash;
+          -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+        }
+    }
+
+    // .c-modal__closeIcon
+    @include e('closeIcon') {
+      @extend %pointer;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      transition: all 0.7s cubic-bezier(0.39, 0.58, 0.57, 1);
+
+      &:hover {
+        transform: rotate(360deg);
+        color: #000;
+      }
+
+      &:before {
+        font-size: 1.7em;
+      }
+    }
+
+    & .l-grid {
+      position: relative;
+      display: flex;
+      width: 50%;
+      max-width: 650px;
+      height: 300px;
+      padding: 20px;
+      background-color: rgb(95, 158, 160);
+      border-radius: 6px;
+      border: 2px solid rgb(206, 206, 206);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      // .l-grid--transparent
+      @include m('transparent') {
+        background-color: transparent;
+        border: 0;
+
+        & .c-modal__header {
+          margin-bottom: 0;
+        }
+      }
+    }
+}

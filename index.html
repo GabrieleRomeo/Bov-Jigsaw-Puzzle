@@ -21,6 +21,7 @@
       <script src="https://use.fontawesome.com/118670e9e2.js"></script>
   </head>
   <body>
+
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong>
@@ -30,17 +31,21 @@
     <![endif]-->
 
     <header class="c-header" role="banner">
-      <h1 class="c-header__title">Jigsaw Drag & Drop Puzzle</h1>
+      <h1 class="c-header__title">
+        <span class="c-header__logo">Jigsaw</span> Drag & Drop Puzzle
+      </h1>
     </header>
 
     <div class="l-main">
 
       <section class="c-splash">
         <div class="c-splash__header">
-          <img class="c-puzzle__img
-                      c-puzzle__img--solved"
+          <img class="c-splash__img
+                      c-splash__img--solved"
                src="assets/img/_Puzzle_solved.png" alt="Puzzle">
-          <h2 class="c-splash__title">GAME START - Choose your level</h2>
+          <div class="c-splash__title-wrapper">
+            <h2 class="c-splash__title">GAME START - Choose your level</h2>
+          </div>
         </div>
         <div class="c-splash__body">
           <form data-submit="startGame">
@@ -50,30 +55,12 @@
                    id="c-splash__level--0"
                    name="c-splash__level"
                    value="0"
-                   type="radio" checked>
-            <input class="c-splash__input c-splash__input--trigger"
-                   id="c-splash__level--1"
-                   name="c-splash__level"
-                   value="1"
-                   type="radio">
-            <input class="c-splash__input c-splash__input--trigger"
-                   id="c-splash__level--2"
-                   name="c-splash__level"
-                   value="2"
                    type="radio">
 
             <ul class="c-splash__list" data-click="changeGameLevel">
               <li class="c-splash__item">
                 <i class="fa fa-star-o" aria-hidden="true"></i>
                 <label class="c-splash__label" for="c-splash__level--0">Easy</label>
-              </li>
-              <li class="c-splash__item">
-                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                <label class="c-splash__label" for="c-splash__level--1">Medium</label>
-              </li>
-              <li class="c-splash__item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <label class="c-splash__label" for="c-splash__level--2">Hard</label>
               </li>
               <li class="c-splash__item">
                 <div class="c-splash__button" type="submit">
@@ -85,19 +72,24 @@
         </div>
         <div class="c-splash__footer">
           <p class="c-splash__description" id="levelDescription">
-            Time to complete 09:00 minutes
           </p>
         </div>
       </section>
 
       <main role="main">
 
+        <div class="c-countDown">
+          <h2 class="c-countDown__title">Are you ready ?</h2>
+          <p class="c-countDown__number" data-counter></p>
+        </div>
+
         <section class="c-puzzle">
+
           <img class="c-puzzle__img c-puzzle__img--unsolved"
                src="assets/img/_Puzzle_bg_unsolved.png" alt="Puzzle">
           <div class="c-puzzle__hexagon
                       c-puzzle__column-1"
-               id="hexagon_5" data-piece="45">
+               id="hexagon_1" data-piece="45">
             <img class="c-pieces__piece"
                  id="45"
                  data-piece="45"
@@ -107,7 +99,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-3"
-               id="hexagon_6" data-piece="41">
+               id="hexagon_2" data-piece="41">
             <img class="c-pieces__piece"
                  id="41"
                  data-piece="41"
@@ -117,7 +109,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-5"
-               id="hexagon_7" data-piece="37">
+               id="hexagon_3" data-piece="37">
             <img class="c-pieces__piece"
                  id="37"
                  data-piece="37"
@@ -127,7 +119,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-7"
-               id="hexagon_8" data-piece="33">
+               id="hexagon_4" data-piece="33">
             <img class="c-pieces__piece"
                  id="33"
                  data-piece="33"
@@ -137,7 +129,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-9"
-               id="hexagon_9" data-piece="29">
+               id="hexagon_5" data-piece="29">
             <img class="c-pieces__piece"
                  id="29"
                  data-piece="29"
@@ -147,7 +139,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-2"
-               id="hexagon_10" data-piece="43">
+               id="hexagon_6" data-piece="43">
             <img class="c-pieces__piece"
                  id="43"
                  data-piece="43"
@@ -157,7 +149,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-4"
-               id="hexagon_11" data-piece="39">
+               id="hexagon_7" data-piece="39">
             <img class="c-pieces__piece"
                  id="39"
                  data-piece="39"
@@ -167,7 +159,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-6"
-               id="hexagon_12" data-piece="35">
+               id="hexagon_8" data-piece="35">
             <img class="c-pieces__piece"
                  id="35"
                  data-piece="35"
@@ -177,7 +169,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-8"
-               id="hexagon_13" data-piece="31">
+               id="hexagon_9" data-piece="31">
             <img class="c-pieces__piece"
                  id="31"
                  data-piece="31"
@@ -187,7 +179,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-1"
-               id="hexagon_14" data-piece="44">
+               id="hexagon_10" data-piece="44">
             <img class="c-pieces__piece"
                  id="44"
                  data-piece="44"
@@ -197,7 +189,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-3"
-               id="hexagon_15" data-piece="40">
+               id="hexagon_11" data-piece="40">
             <img class="c-pieces__piece"
                  id="40"
                  data-piece="40"
@@ -207,7 +199,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-5"
-               id="hexagon_16" data-piece="36">
+               id="hexagon_12" data-piece="36">
             <img class="c-pieces__piece"
                  id="36"
                  data-piece="36"
@@ -217,7 +209,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-7"
-               id="hexagon_17" data-piece="32">
+               id="hexagon_13" data-piece="32">
             <img class="c-pieces__piece"
                  id="32"
                  data-piece="32"
@@ -227,7 +219,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-9"
-               id="hexagon_18" data-piece="28">
+               id="hexagon_14" data-piece="28">
             <img class="c-pieces__piece"
                  id="28"
                  data-piece="28"
@@ -237,7 +229,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-2"
-               id="hexagon_19" data-piece="42">
+               id="hexagon_15" data-piece="42">
             <img class="c-pieces__piece"
                  id="42"
                  data-piece="42"
@@ -247,7 +239,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-4"
-               id="hexagon_20" data-piece="38">
+               id="hexagon_16" data-piece="38">
             <img class="c-pieces__piece"
                  id="38"
                  data-piece="38"
@@ -257,7 +249,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-6"
-               id="hexagon_21" data-piece="34">
+               id="hexagon_17" data-piece="34">
             <img class="c-pieces__piece"
                  id="34"
                  data-piece="34"
@@ -267,7 +259,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-8"
-               id="hexagon_22" data-piece="30">
+               id="hexagon_18" data-piece="30">
             <img class="c-pieces__piece"
                  id="30"
                  data-piece="30"
@@ -277,7 +269,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-1"
-               id="hexagon_23" data-piece="27">
+               id="hexagon_19" data-piece="27">
             <img class="c-pieces__piece"
                  id="27"
                  data-piece="27"
@@ -287,7 +279,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-3"
-               id="hexagon_24" data-piece="18">
+               id="hexagon_20" data-piece="18">
             <img class="c-pieces__piece"
                  id="18"
                  data-piece="18"
@@ -297,7 +289,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-5"
-               id="hexagon_25" data-piece="14">
+               id="hexagon_21" data-piece="14">
             <img class="c-pieces__piece"
                  id="14"
                  data-piece="14"
@@ -307,7 +299,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-7"
-               id="hexagon_26" data-piece="10">
+               id="hexagon_22" data-piece="10">
             <img class="c-pieces__piece"
                  id="10"
                  data-piece="10"
@@ -317,7 +309,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-9"
-               id="hexagon_27" data-piece="6">
+               id="hexagon_23" data-piece="6">
             <img class="c-pieces__piece"
                  id="6"
                  data-piece="6"
@@ -327,7 +319,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-2"
-               id="hexagon_28" data-piece="25">
+               id="hexagon_24" data-piece="25">
             <img class="c-pieces__piece"
                  id="25"
                  data-piece="25"
@@ -337,7 +329,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-4"
-               id="hexagon_29" data-piece="16">
+               id="hexagon_25" data-piece="16">
             <img class="c-pieces__piece"
                  id="16"
                  data-piece="16"
@@ -347,7 +339,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-6"
-               id="hexagon_30" data-piece="12">
+               id="hexagon_26" data-piece="12">
             <img class="c-pieces__piece"
                  id="12"
                  data-piece="12"
@@ -357,7 +349,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-8"
-               id="hexagon_31" data-piece="8">
+               id="hexagon_27" data-piece="8">
             <img class="c-pieces__piece"
                  id="8"
                  data-piece="8"
@@ -367,7 +359,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-1"
-               id="hexagon_32" data-piece="26">
+               id="hexagon_28" data-piece="26">
             <img class="c-pieces__piece"
                  id="26"
                  data-piece="26"
@@ -377,7 +369,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-3"
-               id="hexagon_33" data-piece="17">
+               id="hexagon_29" data-piece="17">
             <img class="c-pieces__piece"
                  id="17"
                  data-piece="17"
@@ -387,7 +379,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-5"
-               id="hexagon_34" data-piece="13">
+               id="hexagon_30" data-piece="13">
             <img class="c-pieces__piece"
                  id="13"
                  data-piece="13"
@@ -397,7 +389,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-7"
-               id="hexagon_35" data-piece="9">
+               id="hexagon_31" data-piece="9">
             <img class="c-pieces__piece"
                  id="9"
                  data-piece="9"
@@ -407,7 +399,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-9"
-               id="hexagon_36" data-piece="5">
+               id="hexagon_32" data-piece="5">
             <img class="c-pieces__piece"
                  id="5"
                    data-piece="5"
@@ -417,7 +409,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-2"
-               id="hexagon_37" data-piece="24">
+               id="hexagon_33" data-piece="24">
             <img class="c-pieces__piece"
                  id="24"
                  data-piece="24"
@@ -427,7 +419,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-4"
-               id="hexagon_38" data-piece="15">
+               id="hexagon_34" data-piece="15">
             <img class="c-pieces__piece"
                  id="15"
                  data-piece="15"
@@ -437,7 +429,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-6"
-               id="hexagon_39" data-piece="11">
+               id="hexagon_35" data-piece="11">
             <img class="c-pieces__piece"
                  id="11"
                  data-piece="11"
@@ -447,7 +439,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-8"
-               id="hexagon_40" data-piece="7">
+               id="hexagon_36" data-piece="7">
             <img class="c-pieces__piece"
                  id="7"
                  data-piece="7"
@@ -457,7 +449,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-1"
-               id="hexagon_41" data-piece="23">
+               id="hexagon_37" data-piece="23">
             <img class="c-pieces__piece"
                  id="23"
                  data-piece="23"
@@ -467,7 +459,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-3"
-               id="hexagon_42" data-piece="22">
+               id="hexagon_38" data-piece="22">
             <img class="c-pieces__piece"
                  id="22"
                  data-piece="22"
@@ -477,7 +469,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-5"
-               id="hexagon_43" data-piece="21">
+               id="hexagon_39" data-piece="21">
             <img class="c-pieces__piece"
                  id="21"
                  data-piece="21"
@@ -487,7 +479,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-7"
-               id="hexagon_44" data-piece="20">
+               id="hexagon_40" data-piece="20">
             <img class="c-pieces__piece"
                  id="20"
                  data-piece="20"
@@ -497,7 +489,7 @@
           </div>
           <div class="c-puzzle__hexagon
                       c-puzzle__column-9"
-               id="hexagon_45" data-piece="19">
+               id="hexagon_41" data-piece="19">
             <img class="c-pieces__piece"
                  id="19"
                  data-piece="19"
@@ -509,45 +501,47 @@
 
         <section class="c-pieces">
         </section>
+
       </main>
 
       <aside role="complementary">
 
-        <div class="c-timer">
-          <input class="c-timer__input c-timer__input--trigger"
-                 name="c-timer__panel" id="c-timer__panel--0" type="radio"
+        <div class="c-info">
+          <input class="c-info__input c-info__input--trigger"
+                 name="c-info__panel" id="c-info__panel--0" type="radio"
                  checked>
-          <input class="c-timer__input c-timer__input--trigger"
-                 name="c-timer__panel" id="c-timer__panel--1" type="radio">
-          <nav class="c-timer__nav" role="navigation">
-              <ul class="c-timer__list">
-                <li class="c-timer__item">
-                  <label class="c-timer__label" for="c-timer__panel--0">
+          <input class="c-info__input c-info__input--trigger"
+                 name="c-info__panel" id="c-info__panel--1" type="radio">
+          <nav class="c-info__nav" role="navigation">
+              <ul class="c-info__list">
+                <li class="c-info__item">
+                  <label class="c-info__label" for="c-info__panel--0">
                     timer
                   </label>
                 </li>
-                <li class="c-timer__item">
-                  <label class="c-timer__label" for="c-timer__panel--1">
-                    statistics
+                <li class="c-info__item">
+                  <label class="c-info__label" for="c-info__panel--1">
+                    statistics & tips
                   </label>
                 </li>
               </ul>
           </nav>
-          <div class="c-timer__header">
-            <p class="c-timer__paragraph">countdown</p>
-            <p class="c-timer__paragraph c-timer__paragraph--medium">00:00:00</p>
-            <h2 class="c-timer__counterClock">00:<span class="c-timer__span--isActive">00:00</span></h2>
-            <i class="c-timer__icon
-                      c-timer__icon--restart fa fa-repeat"
-                aria-hidden="true"></i>
+          <div class="c-info__header">
+            <p class="c-info__paragraph">countdown</p>
+            <p class="c-info__paragraph c-info__paragraph--medium" data-time>00:00:00</p>
+            <h2 class="c-info__counterClock" data-clock>
+            </h2>
+            <i class="c-info__icon
+                      c-info__icon--restart fa fa-repeat"
+                aria-hidden="true"
+                title="Try Again - Restart the Game"
+                data-click="showModalRestart"></i>
           </div>
-          <div class="c-timer__tab">
-            <div class="c-timer__panel">
-              <div class="c-timer__body">
-                <div class="c-timer__clock">
-                  <i class="c-timer__icon
-                            c-timer__icon--pause fa fa-pause"
-                      aria-hidden="true"></i>
+          <div class="c-info__tab">
+            <div class="c-info__panel">
+              <div class="c-info__body">
+                <div class="c-info__clock">
+
                   <svg viewbox="0 0 100 100"
                        version="1.1"
                        xmlns="http://www.w3.org/2000/svg"
@@ -600,13 +594,42 @@
                 </div>
               </div>
             </div>
-            <div class="c-timer__panel">
-              <ul class="c-timer__list c-timer__list--column">
-                <li class="c-timer__item">Items</li>
+            <div class="c-info__panel">
+              <ul class="c-info__list
+                         c-info__list--column
+                         c-info__list--statistics">
+                <li class="c-info__item">
+                  Level:
+                  <span class="c-info__span-stats" data-game-level></span>
+                </li>
+                <li class="c-info__item">
+                  Total pieces:
+                  <span class="c-info__span-stats" data-total-pieces></span>
+                </li>
+                <li class="c-info__item">
+                  Missing pieces:
+                  <span class="c-info__span-stats" data-missing-pieces></span>
+                </li>
+                <li class="c-info__item">
+                  Wrong pieces:
+                  <span class="c-info__span-stats" data-wrong-pieces></span>
+                </li>
+                <li class="c-info__item">
+                  Available Tips:
+                  <span class="c-info__span-stats" data-available-tips></span>
+                </li>
               </ul>
             </div>
+            <div class="c-info__footer">
+              <input class="c-info__button"
+                     type="button"
+                     value="Help please!"
+                     data-click="getTips"
+                     disabled>
+            </div>
           </div>
-        </div>
+
+        </div><!-- end c-info-->
 
       </aside>
 
@@ -618,8 +641,10 @@
     </footer>
 
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/view.js"></script>
-    <script src="assets/js/Presenter.js"></script>
-    <script src="assets/js/puzzle.js"></script>
+    <script src="assets/js/puzzleModel.js"></script>
+    <script src="assets/js/splashViewModel.js"></script>
+    <script src="assets/js/infoViewModel.js"></script>
+    <script src="assets/js/puzzleViewModel.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>

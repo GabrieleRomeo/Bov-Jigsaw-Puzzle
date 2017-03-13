@@ -4,6 +4,7 @@
 // ----------------------------------------------------------------------
 
 $splash-title-color: conf($conf-c-splash, title-color);
+$maxTime-bg-color: conf($conf-c-splash, maxTime-bg-color);
 
 $splash-conf-inputs: conf($conf-c-splash, input);
 $splash-input-border-radius: conf($splash-conf-inputs, border-radius);
@@ -18,35 +19,67 @@ $splash-button-hv-bg-color: conf($splash-conf-button, hover-background-color);
 .c-splash {
   position: relative;
   top: 20px;
-  -webkit-animation-name: fadeInLeft;
-  animation-name: fadeInLeft;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+
+    // .c-splash__header
+    @include e('header') {
+      padding: 20px;
+      box-shadow: inset 0 0 2em #000;
+      overflow: hidden;
+    }
 
     // .c-splash__body
     @include e('body') {
       position: absolute;
       width: 40%;
-      top: 10%;
+      top: 18%;
       left: 0;
       right: 0;
       margin-left: auto;
       margin-right: auto;
+      transform-origin: top right;
+      transform: rotate(90deg);
+      opacity: 0;
+      -webkit-animation-name: rotateAntiClock;
+      animation-name: rotateAntiClock;
+      -webkit-animation-timing-function: cubic-bezier(.42, 0, 1, 1);
+      animation-timing-function: cubic-bezier(.42, 0, 1, 1);
+      -webkit-animation-duration: .3s;
+      animation-duration: .3s;
+      -webkit-animation-delay: 1s;
+      animation-delay: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    @include e('img') {
+      position: relative;
+      -webkit-animation-name: fadeInTop;
+      animation-name: fadeInTop;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
     }
 
     // .c-splash__footer
     @include e('footer') {
       position: absolute;
+      left: 50%;
       bottom: 10%;
       color: white();
     }
 
+    // .c-splash__title-wrapper
+    @include e('title-wrapper') {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+    }
+
     // .c-splash__title
     @include e('title') {
-      position: absolute;
-      top: 0;
+      margin-left: -50%;
+      font-size: 1.5em;
       color: $splash-title-color;
     }
 
@@ -83,7 +116,21 @@ $splash-button-hv-bg-color: conf($splash-conf-button, hover-background-color);
       @extend %pointer;
       display: inline-block;
       width: 100%;
-      margin-left: 20%;
+      padding-left: 20%;
+      text-transform: capitalize;
+    }
+
+    // .c-splash__description
+    @include e('description') {
+      font-size: 2em;
+      margin-left: -50%;
+    }
+
+    // .c-splash__maxTime
+    @include e('maxTime') {
+      padding: 5px;
+      border-radius: 8px;
+      background-color: $maxTime-bg-color;
     }
 
     // .c-splash__input
