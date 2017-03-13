@@ -1,0 +1,278 @@
+
+$info-color:               conf($conf-c-info, color);
+$info-counterClock-f-size: conf($conf-c-info, counterClock-font-size);
+$info-active-elements:     conf($conf-c-info, active-elements);
+$info-active-txt-color:    conf($info-active-elements, txt-color);
+$info-active-ico-bg-color: conf($info-active-elements, icon-bg-color);
+$info-nav:                 conf($conf-c-info, navigation);
+$info-nav-font-size:       conf($info-nav, font-size);
+$info-nav-bor-bottom:      conf($info-nav, border-bottom);
+
+$info-clock:           conf($conf-c-info, clock);
+$info-clock-width:     conf($info-clock, width);
+$info-clock-height:    conf($info-clock, height);
+$info-clock-bg-color:  conf($info-clock, bg-color);
+
+
+$info-stats:           conf($conf-c-info, stats);
+$info-stats-font-size: conf($info-stats, font-size);
+$info-stats-bg-color:  conf($info-stats, bg-color);
+$info-stats-padding:   conf($info-stats, padding);
+
+
+$info-button:              conf($conf-c-info, button);
+$info-button-height:       conf($info-button, height);
+$info-button-width:        conf($info-button, width);
+$info-button-font-size:    conf($info-button, font-size);
+$info-button-bg-color:     conf($info-button, bg-color);
+$info-button-bg-color-hov: conf($info-button, bg-color-hov);
+$info-button-border:       conf($info-button, border);
+$info-button-border-rad:   conf($info-button, border-radius);
+
+%info-icon {
+  margin-top: 10px;
+  background-color: transparent!important;
+  border: 0!important;
+}
+
+.c-info {
+
+    position: relative;
+    overflow: hidden;
+    font-family: Anaheim, sans-serif;
+    font-weight: 300;
+    color: $info-color;
+
+    // .c-info__input
+    @include e('input') {
+
+        // .c-info__input--trigger
+        @include m('trigger') {
+            @extend %none;
+        }
+    }
+
+    // .c-info__nav
+    @include e('nav') {
+      padding-bottom: 48px;
+      margin-bottom: 11px;
+      font-size: $info-nav-font-size;
+      border-bottom: $info-nav-bor-bottom;
+    }
+
+    // .c-info__list
+    @include e('list') {
+      @extend %cap;
+      display: flex;
+      justify-content: space-around;
+
+        // .c-info__list--column
+        @include m('column') {
+          flex-direction: column;
+        }
+
+        // .c-info__list--statistics
+        @include m('statistics') {
+          margin: 0 auto;
+
+            @media screen and (min-width: $media-min-width) {
+              width: 55%;
+              font-size: $info-stats-font-size;
+            }
+        }
+    }
+
+    // .c-info__item
+    @include e('item') {
+      position: relative;
+      padding: 10px;
+    }
+
+    // .c-info__span-stats
+    @include e('span-stats') {
+      position: absolute;
+      top: $info-stats-padding;
+      right: 0;
+      background-color: $info-stats-bg-color;
+      padding: $info-stats-padding;
+    }
+
+    // .c-info__label
+    @include e('label') {
+      @extend %pointer;
+    }
+
+    // .c-info__panel
+    @include e('panel') {
+      @extend %none;
+      min-height: 300px;
+    }
+
+    // .c-info__header
+    @include e('header') {
+      position: relative;
+    }
+
+    // .c-info__footer
+    @include e('footer') {
+      text-align: center;
+    }
+
+    // .c-info__button
+    @include e('button') {
+      height: $info-button-height;
+      width: 100%;
+      max-width: $info-button-width;
+      font-size: $info-button-font-size;
+      border: #{$info-button-border};
+      background-color: $info-button-bg-color;
+      border-radius: $info-button-border-rad;
+      transition: all .2s linear;
+
+        &:not([disabled]):hover {
+          @extend %pointer;
+          background-color: $info-button-bg-color-hov;
+        };
+    }
+
+    // .c-info__icon
+    @include e('icon') {
+        position: absolute;
+        background-color: rgba(255, 255, 255, .07);
+        border: 2px solid #fff;
+
+        // .c-info__icon--restart
+        @include m('restart') {
+          @extend %pointer;
+          @extend %txt-sh;
+          @extend %circular;
+          top: 60px;
+          right: 0;
+          padding: 10px;
+
+          &:hover {
+            background-color: $info-active-ico-bg-color;
+          }
+
+            @media screen and (min-width: $media-min-width) {
+              top: 0;
+            }
+        }
+
+        // .c-info__icon--winner
+        @include m('winner') {
+          @extend %info-icon;
+
+          -webkit-animation-name: fadeInTada;
+          animation-name: fadeInTada;
+          -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+          -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+
+        }
+
+        // .c-info__icon--exclamation
+        @include m('exclamation') {
+          @extend %info-icon;
+          color: rgb(255, 255, 0);
+          font-size: 2em !important;
+
+          -webkit-animation-name: wobble;
+          animation-name: wobble;
+          -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+          -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+        }
+
+        // .c-info__icon--pause
+        @include m('pause') {
+          @extend %txt-sh;
+          @extend %circular;
+          top: calc(50% - 20px);
+          left: calc(50% - 16px);
+          padding: 10px;
+        }
+
+        &:before {
+          font-size: 1.2em;
+        }
+
+    }
+
+    // .c-info__paragraph
+    @include e('paragraph') {
+      @extend %cap;
+      padding: 2px 0;
+      font-size: x-large;
+
+        @include m('medium') {
+          font-size: medium;
+        }
+    }
+
+    // c-info__span
+    @include e('span') {
+
+        // c-info__span--highlight
+        @include m('highlight') {
+          color: $info-active-txt-color;
+        }
+
+        // c-info__span--critical
+        @include m('critical') {
+          color: rgb(222, 6, 6);
+          text-shadow: -3px -1px 4px rgba(255, 255, 255, 0.79);
+          font-weight: 700;
+        }
+    }
+
+    // c-info__body
+    @include e('body') {
+      display: flex;
+      justify-content: center;
+    }
+
+
+    // .c-info__counterClock
+    @include e('counterClock') {
+      padding: 20px 0 20px 10px;
+      font-size: 2em;
+
+      @media screen and (min-width: $media-min-width) {
+        font-size: $info-counterClock-f-size;
+        text-align: center;
+      }
+    }
+
+    // .c-info__clock
+    @include e('clock') {
+      @extend %circular;
+      position: relative;
+      width: $info-clock-width;
+      height: $info-clock-height;
+      background-color: $info-clock-bg-color;
+      margin: 0 auto;
+
+        & svg {
+          width: 100%;
+          height: 100%;
+        }
+    }
+
+    .c-info__input--trigger:nth-of-type(1):checked ~ .c-info__tab div:nth-of-type(1),
+    .c-info__input--trigger:nth-of-type(2):checked ~ .c-info__tab div:nth-of-type(2) {
+      display: block;
+      color: #fff;
+    }
+
+    .c-info__input--trigger:nth-of-type(1):checked ~ .c-info__nav .c-info__item:nth-of-type(1),
+    .c-info__input--trigger:nth-of-type(2):checked ~ .c-info__nav .c-info__item:nth-of-type(2) {
+      color: $info-active-txt-color;
+    }
+}

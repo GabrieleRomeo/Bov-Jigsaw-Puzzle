@@ -1,0 +1,8 @@
+{
+  "in": "assets/stylesheets/main.css",
+  "out": "assets/stylesheets/main2.css",
+  "browsers": ["last 3 versions", "Android 2.3"],
+  "autoprefixer": true,
+  "sass": true,
+  "minifier": true
+}

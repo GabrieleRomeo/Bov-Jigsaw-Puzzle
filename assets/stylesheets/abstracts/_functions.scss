@@ -1,0 +1,59 @@
+
+/// Configuration
+/// @access public
+/// @param {Map} $map - A map
+/// @param {String} $key - A map's key
+
+@function conf($map, $key) {
+
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $map.";
+  @return null;
+}
+
+
+///
+/// Get a z-index value from a layer name
+///
+/// @param {String} $layer - Layer's name
+/// @return {Number}
+/// @require $z-indexes
+///
+
+@function z($layer) {
+
+  @if not map-has-key($z-indexes, $layer) {
+    @error  'The layer `#{$layer} does not exist in $z-indexes. '
+          + 'Layer should be one of #{ map-keys($z-indexes) }.';
+  }
+
+  @return map-get($z-indexes, $layer)
+}
+
+
+///
+/// Get white color whit opacity (if any)
+///
+/// @param {Number} $opacity [1]
+/// @return {Hexadecimal}
+///
+
+@function white($opacity: 1) {
+  @return rgba(255, 255, 255, $opacity);
+}
+
+///
+/// Get black color whit opacity (if any)
+///
+/// @param {Number} $opacity [1]
+/// @return {Hexadecimal}
+///
+
+@function black($opacity: 1) {
+  @return rgba(0, 0, 0, $opacity);
+}
+
+
