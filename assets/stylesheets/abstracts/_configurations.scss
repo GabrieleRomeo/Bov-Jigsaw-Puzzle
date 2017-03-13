@@ -3,7 +3,8 @@
 //------------------------------------------------------------------------------
 
 $conf-c-splash: (
-  title-color: rgb(205, 92, 92),
+  title-color: rgb(241, 175, 115),
+  maxTime-bg-color: rgb(95, 158, 160),
   input: (
     border-radius: 30px,
   ),
@@ -30,10 +31,10 @@ $conf-c-puzzle: (
 
 
 //------------------------------------------------------------------------------
-//                       Timer Configuration
+//                       Info Configuration
 //------------------------------------------------------------------------------
 
-$conf-c-timer: (
+$conf-c-info: (
   color: rgba(255, 255, 255, .5),
   counterClock-font-size: 4em,
   active-elements: (
@@ -48,5 +49,20 @@ $conf-c-timer: (
     width: 80%,
     height: 300px,
     bg-color: rgba(0, 0, 0, 0)
+  ),
+  stats: (
+    font-size: 1.2em,
+    bg-color: rgb(246, 55, 103),
+    padding: 5px
+  ),
+  button: (
+    height: 50px,
+    width: 200px,
+    font-size: 1em,
+    border: '1px solid rgba(255, 255, 255, 0.24)',
+    bg-color: rgba(255, 255, 255, 0.8),
+    bg-color-hov: rgb(254, 190, 120),
+    border-radius: 3px,
   )
 );
+
