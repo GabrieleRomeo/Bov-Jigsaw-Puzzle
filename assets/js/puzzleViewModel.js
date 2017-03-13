@@ -368,7 +368,7 @@ var PuzzleViewModel = (function(window, undefined) {
       img.classList.add( 'c-puzzle__img' );
       img.classList.add( 'c-puzzle__img--solved' );
 
-      img.setAttribute( 'src' , 'assets/img/_Puzzle_solved.png' );
+      img.setAttribute( 'src' , 'assets/img/puzzle_solved.png' );
       img.setAttribute( 'alt' , 'Solved Puzzle' );
 
       this.cacheDOM.puzzleView.append(img);
