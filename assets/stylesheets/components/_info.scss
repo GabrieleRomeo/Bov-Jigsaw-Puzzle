@@ -178,6 +178,7 @@ $info-button-border-rad:   conf($info-button, border-radius);
         @include m('exclamation') {
           @extend %info-icon;
           color: rgb(255, 255, 0);
+          font-size: 2em !important;
 
           -webkit-animation-name: wobble;
           animation-name: wobble;

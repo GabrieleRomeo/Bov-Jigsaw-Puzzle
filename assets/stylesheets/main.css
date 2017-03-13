@@ -446,6 +446,7 @@ body {
       animation-fill-mode: both; }
     .c-info__icon--exclamation {
       color: yellow;
+      font-size: 2em !important;
       -webkit-animation-name: wobble;
       animation-name: wobble;
       -webkit-animation-duration: 1s;
