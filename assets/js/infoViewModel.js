@@ -277,10 +277,10 @@ var InfoViewModel = (function(window, undefined) {
       html += '    <div class="c-modal__header">';
       html += '      <h2 class="c-modal__title c-modal__title--flash">';
       html += '        Wrong sequence. Please check your pieces';
-      html += '        <i class="c-info__icon';
-      html += '                  c-info__icon--exclamation fa fa-exclamation-triangle"';
-      html += '            aria-hidden="true"></i>';
       html += '      </h2>';
+      html += '      <i class="c-info__icon';
+      html += '                c-info__icon--exclamation fa fa-exclamation-triangle"';
+      html += '          aria-hidden="true"></i>';
       html += '    </div>';
       html += '</div>';
 
