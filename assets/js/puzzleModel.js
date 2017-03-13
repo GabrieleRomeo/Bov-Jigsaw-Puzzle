@@ -21,7 +21,7 @@ var PuzzleModel = (function( window, undefined ) {
         background: 'assets/sounds/magic_clock.mp3',
         swap: 'assets/sounds/swap_sound.mp3',
         broken: 'assets/sounds/broken_glass.mp3',
-        countDown: 'assets/sounds/countdown_Timer_5_sec.mp3',
+        countDown: 'assets/sounds/countdown.mp3',
         clapping: 'assets/sounds/clapping.mp3',
         fail: 'assets/sounds/fail_effect.mp3'
       },
