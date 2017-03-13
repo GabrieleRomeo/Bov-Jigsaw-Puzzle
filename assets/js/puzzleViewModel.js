@@ -81,13 +81,13 @@ var PuzzleViewModel = (function(window, undefined) {
         image.setAttribute('draggable', true);
         image.setAttribute('alt', 'Puzzle\'s piece number' + piece);
 
-        fragment.append(image);
+        fragment.appendChild(image);
       });
 
       // Show a dashed border
       this.cacheDOM.piecesDesk.classList.add( 'c-pieces--dashed' );
       // Append the entire fragment to the DOM
-      this.cacheDOM.piecesDesk.append(fragment);
+      this.cacheDOM.piecesDesk.appendChild(fragment);
     },
 
     showPuzzle: function() {
@@ -371,7 +371,7 @@ var PuzzleViewModel = (function(window, undefined) {
       img.setAttribute( 'src' , 'assets/img/puzzle_solved.png' );
       img.setAttribute( 'alt' , 'Solved Puzzle' );
 
-      this.cacheDOM.puzzleView.append(img);
+      this.cacheDOM.puzzleView.appendChild(img);
 
       timer.start();
       timer.on( timer.ID + '-elapsedTime', function() {
