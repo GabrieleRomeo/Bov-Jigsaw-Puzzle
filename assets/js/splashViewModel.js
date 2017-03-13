@@ -71,6 +71,8 @@ var SplashViewModel = (function( window, undefined ) {
     this.bindSplashView();
     // Connect the Splash in the View to the Model
     this.bindForm();
+    // Set the first level (easy level) as default level
+    this.cacheDOM.triggerInput.click();
     // Connect the events broadcast by the Model to the View
     this.bindEvents();
   };
@@ -135,9 +137,6 @@ var SplashViewModel = (function( window, undefined ) {
       itemsFragment.appendChild(newItem);
 
     });
-
-    // Set the first level (easy level) as default level
-    self.cacheDOM.triggerInput.click();
 
     // Append the new triggers input after the first one
     this.DOM.insertAfter( inputsFragment, self.cacheDOM.triggerInput );
