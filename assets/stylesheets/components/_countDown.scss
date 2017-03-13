@@ -1,0 +1,27 @@
+
+.c-countDown {
+  position: relative;
+  max-width: 868px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include e('title') {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    font-size: 2em;
+    color: rgb(255, 235, 59);
+    margin-bottom: 1em;
+  }
+
+  @include e('number') {
+    position: absolute;
+    top: 100px;
+    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+    font-size: 6em;
+    color: white();
+    opacity: 0;
+    animation: springIn 0.5s linear 1 forwards;
+    z-index: z('splash');
+  }
+
+}

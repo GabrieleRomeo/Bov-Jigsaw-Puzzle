@@ -1,0 +1,11 @@
+
+.browserupgrade {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 50px;
+  background-color: beige;
+  z-index: z('brwsUpgrade');
+}
