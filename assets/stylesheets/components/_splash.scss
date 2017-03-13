@@ -18,6 +18,8 @@ $splash-button-hv-bg-color: conf($splash-conf-button, hover-background-color);
 
 .c-splash {
   position: relative;
+  min-height: 580px;
+  min-width: 800px;
   top: 20px;
 
     // .c-splash__header

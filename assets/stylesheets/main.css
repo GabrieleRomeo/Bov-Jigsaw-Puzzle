@@ -213,6 +213,8 @@ body {
 
 .c-splash {
   position: relative;
+  min-height: 580px;
+  min-width: 800px;
   top: 20px;
   /*
       .c-splash__input--trigger:nth-of-type(1):checked ~ .c-splash__list .c-splash__item:nth-of-type(1) {
