@@ -332,7 +332,7 @@ body {
     animation: fromLeft 1s cubic-bezier(0, 0, 0.2, 1) forwards; }
   .c-puzzle__hexagon {
     position: absolute;
-    top: 43.4px;
+    top: 44.4px;
     width: 106px;
     height: 98px; }
     .c-puzzle__hexagon:nth-child(n+11):nth-child(-n+19) {
