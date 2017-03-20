@@ -7,9 +7,10 @@ var PuzzleModel = (function( window, undefined ) {
 
   function PuzzleModel() {
 
-    this.started   = false;
-    this.paused    = false;
-    this.isOver    = false;
+    this.started     = false;
+    this.preStarted  = false;
+    this.paused      = false;
+    this.isOver      = false;
     this.pieces    = [[45],[41],[37],[33],[29],[43],[39],[35],[31],[44],[40],[36],
                       [32],[28],[42],[38],[34],[30],[27],[18],[14],[10],[6],[25],
                       [16],[12],[8],[26],[17],[13],[9],[5],[24],[15],[11],[7],[23],
@@ -65,6 +66,8 @@ var PuzzleModel = (function( window, undefined ) {
 
     // Define how much time (in seconds) the tips will remain visible
     this.tipsTime = 5;
+
+    this.isAudioEnabled = true;
   }
 
   // The PuzzleModel can emit events
@@ -75,17 +78,18 @@ var PuzzleModel = (function( window, undefined ) {
 
     // Give to the user the ability to set the game level only if the Game
     // didn't started yet
-    if ( this.isStarted() ) {
+    if ( this.preStarted ) {
       return;
     }
 
-    this.started = true;
+    this.preStarted = true;
 
     // Emit the event
     this.emit( 'model.pre-start' );
   };
 
   PuzzleModel.prototype.start = function() {
+    this.started = true;
     this.emit( 'model.start' );
   };
 
@@ -190,8 +194,8 @@ var PuzzleModel = (function( window, undefined ) {
   PuzzleModel.prototype.setGameLevel = function( currentLevel ) {
 
     // Give to the user the ability to set the game level only if the Game
-    // didn't started yet
-    if ( this.isStarted() ) {
+    // didn't pre started yet
+    if ( this.preStarted ) {
       return;
     }
 
@@ -208,6 +212,18 @@ var PuzzleModel = (function( window, undefined ) {
 
   PuzzleModel.prototype.getSetting = function( name ) {
     return this.settings[name] ? this.settings[name] : void 0;
+  };
+
+  PuzzleModel.prototype.getAudioStatus = function() {
+    return this.isAudioEnabled;
+  };
+
+  PuzzleModel.prototype.toggleAudio = function() {
+
+    this.isAudioEnabled = this.isAudioEnabled ? false : true;
+
+    this.emit( 'model.toggleAudio', this.isAudioEnabled );
+
   };
 
   return PuzzleModel;

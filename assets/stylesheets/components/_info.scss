@@ -122,6 +122,7 @@ $info-button-border-rad:   conf($info-button, border-radius);
     @include e('button') {
       height: $info-button-height;
       width: 100%;
+      margin-bottom: 1.5em;
       max-width: $info-button-width;
       font-size: $info-button-font-size;
       border: #{$info-button-border};
@@ -141,17 +142,34 @@ $info-button-border-rad:   conf($info-button, border-radius);
         background-color: rgba(255, 255, 255, .07);
         border: 2px solid #fff;
 
-        // .c-info__icon--restart
-        @include m('restart') {
+        // c-info__icon--hoverable
+        @include m('hoverable') {
           @extend %pointer;
-          @extend %txt-sh;
-          @extend %circular;
-          top: 60px;
-          right: 0;
-          padding: 10px;
 
           &:hover {
             background-color: $info-active-ico-bg-color;
+          }
+
+        }
+
+        // .c-info__icon--audio
+        @include m('audio') {
+          @extend %txt-sh;
+          top: 60px;
+          right: 0;
+          padding: 15px;
+          border-radius: 28%;
+
+          &[class*="fa-volume-off"]:after {
+            content: '';
+            position: absolute;
+            width: 67%;
+            top: 69%;
+            left: 29%;
+            transform-origin: left top;
+            transform: rotate(-45deg);
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.57);
           }
 
             @media screen and (min-width: $media-min-width) {
@@ -227,7 +245,6 @@ $info-button-border-rad:   conf($info-button, border-radius);
         // c-info__span--critical
         @include m('critical') {
           color: rgb(222, 6, 6);
-          text-shadow: -3px -1px 4px rgba(255, 255, 255, 0.79);
           font-weight: 700;
         }
     }

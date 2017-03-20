@@ -47,7 +47,18 @@ var InfoViewModel = (function(window, undefined) {
       showModalRestart: function() {
         self.model.pauseGame();
         self.renderModalRestart();
+      },
+
+      toggleAudio: function() {
+
+        // Toggle Audio only if the game has been started
+        if ( !self.model.isStarted() ) {
+            return;
+        }
+
+        self.model.toggleAudio();
       }
+
     };
 
     // Init the View
@@ -64,7 +75,7 @@ var InfoViewModel = (function(window, undefined) {
       var $$ = this.DOM.$$;
 
       this.cacheDOM = {
-        playPauseButton: $( '.c-timer__icon--pause',  this.view ),
+        toggleAudio:     $( '[data-click="toggleAudio"]',  this.view ),
         minutes:         $( '#timer #min', this.view ),
         seconds:         $( '#timer #sec', this.view ),
         clockTime:       $( '[data-clock]', this.view ),
@@ -120,6 +131,11 @@ var InfoViewModel = (function(window, undefined) {
       var time = '';
       var newMin = ( this.minutesLength *  minutes ) / gameLevel.time;
       var newSec = ( this.secondsLength *  seconds ) / 60;
+
+      if ( minutes === '00' && seconds === 59 ) {
+        console.log('ok');
+        this.cacheDOM.seconds.setAttribute( 'style', 'stroke: rgb(222, 6, 6);');
+      }
 
       if ( minutes === '00' ) {
         time += '<span class="c-info__span--critical">';
@@ -194,6 +210,9 @@ var InfoViewModel = (function(window, undefined) {
     enableView: function() {
       // Start the timer
       this.resumeTimer();
+
+      // Enable the toggle Audio button
+      this.cacheDOM.toggleAudio.classList.add( 'c-info__icon--hoverable' );
 
       if ( this.gameLevel.tips > 0 ) {
         // Enable the Tips Button
@@ -319,6 +338,16 @@ var InfoViewModel = (function(window, undefined) {
       this.view.appendChild(audio);
     },
 
+    toggleAudioButton: function( isAudioEnabled ) {
+        var newStatus = isAudioEnabled ? 'on' : 'off';
+        var currentS = !isAudioEnabled ? 'on' : 'off';
+        var title = isAudioEnabled ? 'Disable' : 'Enable';
+        var baseAudioClass = 'fa-volume';
+        this.cacheDOM.toggleAudio.classList.remove( baseAudioClass + '-' + currentS );
+        this.cacheDOM.toggleAudio.classList.add( baseAudioClass + '-' + newStatus );
+        this.cacheDOM.toggleAudio.setAttribute( 'title', title + ' audio' );
+    },
+
     // Connect the events broadcast by the Model to the View
     bindEvents: function() {
 
@@ -389,6 +418,8 @@ var InfoViewModel = (function(window, undefined) {
       this.model.on( 'model.resumeGame' , this.enableView.bind(this) );
 
       this.model.on( 'model.wrongSequence', this.renderModalWrongSequence.bind(this));
+
+      this.model.on( 'model.toggleAudio', this.toggleAudioButton.bind(this) );
 
       this.model.on( 'model.gameOver' , gameOverAction );
 
