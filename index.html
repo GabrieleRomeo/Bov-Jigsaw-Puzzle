@@ -533,10 +533,10 @@
             <h2 class="c-info__counterClock" data-clock>
             </h2>
             <i class="c-info__icon
-                      c-info__icon--restart fa fa-repeat"
+                      c-info__icon--audio fa fa-volume-up"
                 aria-hidden="true"
-                title="Try Again - Restart the Game"
-                data-click="showModalRestart"></i>
+                title="Disable Audio"
+                data-click="toggleAudio"></i>
           </div>
           <div class="c-info__tab">
             <div class="c-info__panel">
@@ -624,9 +624,13 @@
             <div class="c-info__footer">
               <input class="c-info__button"
                      type="button"
-                     value="Help please!"
+                     value="Help"
                      data-click="getTips"
                      disabled>
+              <input class="c-info__button"
+                     type="button"
+                     value="Restart"
+                     data-click="showModalRestart">
             </div>
           </div>
 

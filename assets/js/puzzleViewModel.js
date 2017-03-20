@@ -221,6 +221,10 @@ var PuzzleViewModel = (function(window, undefined) {
       deskView.removeEventListener( 'drop', this._handleDeskDrop.bind(this) );
     },
 
+    toggleAudio: function( isAudioEnabled ) {
+        isAudioEnabled ? this.playBackgroundSound() : this.pauseBackgroundSound();
+    },
+
     _handleDrag: function( event ) {
 
       // Allow drag only on img.c-pieces__piece elements
@@ -442,6 +446,8 @@ var PuzzleViewModel = (function(window, undefined) {
       // Connect the preView function to the event triggered by the Model
       this.model.on( 'model.start' , handleDragAndDrop );
       this.model.on( 'model.updateTips' , this.showTip.bind(this) );
+
+      this.model.on( 'model.toggleAudio', this.toggleAudio.bind(this) );
 
       this.model.on( 'model.pauseGame', disableDragAndDrop );
       this.model.on( 'model.resumeGame', handleDragAndDrop );
