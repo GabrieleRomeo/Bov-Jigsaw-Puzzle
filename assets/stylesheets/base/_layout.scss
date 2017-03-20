@@ -1,4 +1,12 @@
+$max-width: 1200px;
 
 body {
   background-color: #1d1d1d;
+}
+
+.c-header,
+.l-main,
+.c-footer {
+  max-width: $max-width;
+  margin: 0 auto;
 }
