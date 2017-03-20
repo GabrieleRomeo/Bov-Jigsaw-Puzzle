@@ -45,7 +45,7 @@ $hexagonTranslation: 22px;
     // .c-puzzle__hexagon
     @include e('hexagon') {
       position: absolute;
-      top: 43.4px;
+      top: 44.4px;
 
       width:  conf($hexagon-config, width);
       height: conf($hexagon-config, height);
