@@ -4,13 +4,13 @@
 .c-info__list, .c-info__paragraph {
   text-transform: capitalize; }
 
-.c-splash__label, .c-splash__button--submit, .c-info__label, .c-info__button:not([disabled]):hover, .c-info__icon--restart, .c-modal__closeIcon {
+.c-splash__label, .c-splash__button--submit, .c-info__label, .c-info__button:not([disabled]):hover, .c-info__icon--hoverable, .c-modal__closeIcon {
   cursor: pointer; }
 
-.c-info__icon--restart, .c-info__icon--pause {
+.c-info__icon--audio, .c-info__icon--pause {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); }
 
-.c-info__icon--restart, .c-info__icon--pause, .c-info__clock {
+.c-info__icon--pause, .c-info__clock {
   border-radius: 50%; }
 
 .c-puzzle__img--disabled, .c-pieces__piece--disabled {
@@ -158,16 +158,24 @@ body {
 body {
   background-color: #1d1d1d; }
 
+.c-header,
+.l-main,
+.c-footer {
+  max-width: 1200px;
+  margin: 0 auto; }
+
 .c-header {
   padding: 0 20px; }
   .c-header__logo {
+    display: inline-block;
     padding: 10px;
     font-family: sans-serif;
     font-size: 1.2em;
     color: #ffe39e;
     background-color: #2196f3;
     text-transform: uppercase;
-    box-shadow: inset 0 0 20em 11px #1d1d1d; }
+    box-shadow: inset 0 0 20em 11px #1d1d1d;
+    transform: rotate(-4deg) scale(0.9); }
   .c-header__title {
     padding: 30px;
     font-family: 'Pacifico', cursive;
@@ -315,6 +323,8 @@ body {
     position: absolute;
     top: 0;
     left: 0; }
+  .c-puzzle .c-pieces__piece {
+    width: 106%; }
   .c-puzzle__img--solved {
     position: absolute;
     top: 0;
@@ -322,7 +332,7 @@ body {
     animation: fromLeft 1s cubic-bezier(0, 0, 0.2, 1) forwards; }
   .c-puzzle__hexagon {
     position: absolute;
-    top: 43px;
+    top: 43.4px;
     width: 106px;
     height: 98px; }
     .c-puzzle__hexagon:nth-child(n+11):nth-child(-n+19) {
@@ -334,27 +344,27 @@ body {
     .c-puzzle__hexagon:nth-child(n+38):nth-child(-n+42) {
       transform: translateY(400%); }
   .c-puzzle__column-1 {
-    left: 43px; }
+    left: 41px; }
   .c-puzzle__column-2 {
-    left: 127px;
-    top: 91px; }
+    left: 125px;
+    top: 93px; }
   .c-puzzle__column-3 {
-    left: 211px; }
+    left: 209px; }
   .c-puzzle__column-4 {
-    left: 295px;
-    top: 91px; }
+    left: 293px;
+    top: 93px; }
   .c-puzzle__column-5 {
-    left: 379px; }
+    left: 377px; }
   .c-puzzle__column-6 {
-    left: 463px;
-    top: 91px; }
+    left: 461px;
+    top: 93px; }
   .c-puzzle__column-7 {
-    left: 547px; }
+    left: 545px; }
   .c-puzzle__column-8 {
-    left: 631px;
-    top: 91px; }
+    left: 629px;
+    top: 93px; }
   .c-puzzle__column-9 {
-    left: 715px; }
+    left: 713px; }
 
 .c-pieces {
   min-height: 430px;
@@ -416,6 +426,7 @@ body {
   .c-info__button {
     height: 50px;
     width: 100%;
+    margin-bottom: 1.5em;
     max-width: 200px;
     font-size: 1em;
     border: 1px solid rgba(255, 255, 255, 0.24);
@@ -428,14 +439,25 @@ body {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.07);
     border: 2px solid #fff; }
-    .c-info__icon--restart {
+    .c-info__icon--hoverable:hover {
+      background-color: rgba(255, 255, 255, 0.24); }
+    .c-info__icon--audio {
       top: 60px;
       right: 0;
-      padding: 10px; }
-      .c-info__icon--restart:hover {
-        background-color: rgba(255, 255, 255, 0.24); }
+      padding: 15px;
+      border-radius: 28%; }
+      .c-info__icon--audio[class*="fa-volume-off"]:after {
+        content: '';
+        position: absolute;
+        width: 67%;
+        top: 69%;
+        left: 29%;
+        transform-origin: left top;
+        transform: rotate(-45deg);
+        display: block;
+        border: 1px solid rgba(255, 255, 255, 0.57); }
       @media screen and (min-width: 1200px) {
-        .c-info__icon--restart {
+        .c-info__icon--audio {
           top: 0; } }
     .c-info__icon--winner {
       -webkit-animation-name: fadeInTada;
@@ -472,7 +494,6 @@ body {
     color: white; }
   .c-info__span--critical {
     color: #de0606;
-    text-shadow: -3px -1px 4px rgba(255, 255, 255, 0.79);
     font-weight: 700; }
   .c-info__body {
     display: flex;
