@@ -76,7 +76,8 @@ $info-button-border-rad:   conf($info-button, border-radius);
           margin: 0 auto;
 
             @media screen and (min-width: $media-min-width) {
-              width: 55%;
+              width: 75%;
+              max-width: 300px;
               font-size: $info-stats-font-size;
             }
         }
@@ -157,7 +158,7 @@ $info-button-border-rad:   conf($info-button, border-radius);
           @extend %txt-sh;
           top: 60px;
           right: 0;
-          padding: 15px;
+          padding: 10px;
           border-radius: 28%;
 
           &[class*="fa-volume-off"]:after {
