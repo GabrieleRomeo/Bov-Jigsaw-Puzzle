@@ -192,7 +192,7 @@ body {
     width: 83%; }
     @media screen and (min-width: 1200px) {
       .l-main main {
-        width: 70%; } }
+        width: 75%; } }
   .l-main aside {
     width: 17%;
     padding: 10px;
@@ -201,7 +201,7 @@ body {
     z-index: 2; }
     @media screen and (min-width: 1200px) {
       .l-main aside {
-        width: 30%;
+        width: 25%;
         padding: 30px;
         font-size: initial; } }
 
@@ -373,7 +373,7 @@ body {
   .c-pieces--dashed {
     border: 4px dashed rgba(255, 255, 255, 0.18); }
   .c-pieces__piece {
-    color: red; }
+    overflow: hidden; }
     .c-pieces__piece--falling {
       animation: fallingDown 1s cubic-bezier(0.55, -0.04, 0.91, 0.94) forwards;
       /*transform origin is moved to the bottom left corner*/
@@ -406,7 +406,8 @@ body {
       margin: 0 auto; }
       @media screen and (min-width: 1200px) {
         .c-info__list--statistics {
-          width: 55%;
+          width: 75%;
+          max-width: 300px;
           font-size: 1.2em; } }
   .c-info__item {
     position: relative;
@@ -444,7 +445,7 @@ body {
     .c-info__icon--audio {
       top: 60px;
       right: 0;
-      padding: 15px;
+      padding: 10px;
       border-radius: 28%; }
       .c-info__icon--audio[class*="fa-volume-off"]:after {
         content: '';
@@ -503,7 +504,7 @@ body {
     font-size: 2em; }
     @media screen and (min-width: 1200px) {
       .c-info__counterClock {
-        font-size: 4em;
+        font-size: 3em;
         text-align: center; } }
   .c-info__clock {
     position: relative;

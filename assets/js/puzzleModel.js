@@ -68,6 +68,8 @@ var PuzzleModel = (function( window, undefined ) {
     this.tipsTime = 5;
 
     this.isAudioEnabled = true;
+
+    this.volume = .4;
   }
 
   // The PuzzleModel can emit events
@@ -86,6 +88,10 @@ var PuzzleModel = (function( window, undefined ) {
 
     // Emit the event
     this.emit( 'model.pre-start' );
+  };
+
+  PuzzleModel.prototype.isGameOver = function() {
+    return this.isOver;
   };
 
   PuzzleModel.prototype.start = function() {
@@ -136,6 +142,7 @@ var PuzzleModel = (function( window, undefined ) {
     // Check if the user wins
     if ( this.missingPieces === 0 && this.wrongPieces === 0 ) {
       this.emit( 'model.winnerUSER', this.missingPieces );
+      this.isOver = true;
     }
 
     // Check if the puzzle has been completed but the sequence is wrong
@@ -214,8 +221,8 @@ var PuzzleModel = (function( window, undefined ) {
     return this.settings[name] ? this.settings[name] : void 0;
   };
 
-  PuzzleModel.prototype.getAudioStatus = function() {
-    return this.isAudioEnabled;
+  PuzzleModel.prototype.getVolume = function() {
+    return this.isAudioEnabled ? this.volume : 0;
   };
 
   PuzzleModel.prototype.toggleAudio = function() {
