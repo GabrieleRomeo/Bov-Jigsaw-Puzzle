@@ -18,7 +18,7 @@ $aside-width: $width - $main-width;
     width: $main-width;
 
     @media screen and(min-width: $media-min-width) {
-      width: 70%;
+      width: 75%;
     }
   }
 
@@ -30,7 +30,7 @@ $aside-width: $width - $main-width;
     z-index: z('tooltip');
 
     @media screen and(min-width: $media-min-width) {
-      width: 30%;
+      width: 25%;
       padding: 30px;
       font-size: initial;
     }
