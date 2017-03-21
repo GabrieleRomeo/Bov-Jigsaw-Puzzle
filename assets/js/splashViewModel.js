@@ -151,7 +151,7 @@ var SplashViewModel = (function( window, undefined ) {
     var desc  = '';
 
     desc += 'Maximum time for completing: ';
-    desc += '<span class="c-splash__maxTime">' + level['time'] + ' minuts</span>';
+    desc += '<span class="c-splash__maxTime">' + level['time'] + ' minutes</span>';
 
     this.cacheDOM.gameLevelDesc.innerHTML = desc;
   };
