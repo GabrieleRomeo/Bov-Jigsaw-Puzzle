@@ -50,7 +50,7 @@ var PuzzleViewModel = (function(window, undefined) {
       this.audioSettings = this.model.getSetting( 'audio' );
 
       // Preload the background sound
-      this.loadBackgroundSounds();
+      this.loadSoundEffects();
       // Connect the events broadcast by the Model to the View
       this.bindEvents();
     },
@@ -94,22 +94,33 @@ var PuzzleViewModel = (function(window, undefined) {
       this.view.style.display = 'initial';
     },
 
-    loadBackgroundSounds: function() {
+    loadSoundEffects: function() {
 
       var backgroundAudio = document.createElement( 'AUDIO' );
       var swapAudio       = document.createElement( 'AUDIO' );
+      var brokenAudio     = document.createElement( 'AUDIO' );
 
       var backgrondSrc = this.audioSettings['background'];
       var swapSrc      = this.audioSettings['swap'];
+      var brokenSrc    = this.audioSettings['broken'];
 
+      // Background sound
       backgroundAudio.setAttribute( 'src' , backgrondSrc );
       backgroundAudio.setAttribute( 'preload' , 'auto');
       backgroundAudio.volume   = .3;
       backgroundAudio.loop = true;
 
+      // Swap tile effect
       swapAudio.setAttribute( 'src' , swapSrc );
       swapAudio.setAttribute( 'preload' , 'auto');
       swapAudio.volume   = 1;
+
+      // Broken glasses effect
+      brokenAudio.setAttribute( 'src' , brokenSrc );
+      brokenAudio.volume   = .5;
+      this.view.appendChild(brokenAudio);
+      // Memorize it into the cache
+      this.cacheDOM['brokenGlassesEffect'] = brokenAudio;
 
       // Add Audios into the cache
       this.cacheDOM['backgroundAudio'] = backgroundAudio;
@@ -123,17 +134,9 @@ var PuzzleViewModel = (function(window, undefined) {
     fallingDown: function() {
 
       var list = App.Utils.Array.toArr(this.cacheDOM.pieces);
-      var audio = document.createElement( 'AUDIO' );
 
-      var brokenSrc = this.audioSettings['broken'];
-
-
-      // Add the broken glasses effect
-      audio.setAttribute( 'src' , brokenSrc );
-      audio.autoplay = true;
-      audio.volume   = .5;
-      this.view.appendChild(audio);
-      audio.load();
+      // Play the audio effect
+      this.cacheDOM['brokenGlassesEffect'].play();
 
       // Add to each piece the falling down animation class
       list.forEach(function(piece) {
@@ -219,10 +222,6 @@ var PuzzleViewModel = (function(window, undefined) {
 
       puzzleView.removeEventListener( 'drop', this._handlePuzzleDrop.bind(this) );
       deskView.removeEventListener( 'drop', this._handleDeskDrop.bind(this) );
-    },
-
-    toggleAudio: function( isAudioEnabled ) {
-        isAudioEnabled ? this.playBackgroundSound() : this.pauseBackgroundSound();
     },
 
     _handleDrag: function( event ) {
@@ -446,8 +445,6 @@ var PuzzleViewModel = (function(window, undefined) {
       // Connect the preView function to the event triggered by the Model
       this.model.on( 'model.start' , handleDragAndDrop );
       this.model.on( 'model.updateTips' , this.showTip.bind(this) );
-
-      this.model.on( 'model.toggleAudio', this.toggleAudio.bind(this) );
 
       this.model.on( 'model.pauseGame', disableDragAndDrop );
       this.model.on( 'model.resumeGame', handleDragAndDrop );
