@@ -50,12 +50,6 @@ var InfoViewModel = (function(window, undefined) {
       },
 
       toggleAudio: function() {
-
-        // Toggle Audio only if the game has been started
-        if ( !self.model.isStarted() ) {
-            return;
-        }
-
         self.model.toggleAudio();
       }
 
@@ -97,6 +91,7 @@ var InfoViewModel = (function(window, undefined) {
 
       // Preload Audio Settings from the model
       this.audioSettings = this.model.getSetting( 'audio' );
+      this.loadAudioEffects();
 
       // Connect the events broadcast by the Model to the View
       this.bindEvents();
@@ -212,7 +207,7 @@ var InfoViewModel = (function(window, undefined) {
       this.resumeTimer();
 
       // Enable the toggle Audio button
-      this.cacheDOM.toggleAudio.classList.add( 'c-info__icon--hoverable' );
+      //this.cacheDOM.toggleAudio.classList.add( 'c-info__icon--hoverable' );
 
       if ( this.gameLevel.tips > 0 ) {
         // Enable the Tips Button
@@ -314,28 +309,32 @@ var InfoViewModel = (function(window, undefined) {
       });
     },
 
-    loadClappingAudio: function() {
+    loadAudioEffects: function() {
+      var clappingAudio = document.createElement( 'AUDIO' );
+      var gameOverAudio = document.createElement( 'AUDIO' );
 
-      var audio = document.createElement( 'AUDIO' );
+
       var clappingSrc = this.audioSettings['clapping'];
+      var gameOverSrc = this.audioSettings['fail'];
 
-      audio.setAttribute( 'src' , clappingSrc );
-      audio.autoplay = true;
+      clappingAudio.setAttribute( 'src' , clappingSrc );
+      gameOverAudio.setAttribute( 'src' , gameOverSrc );
 
-      // Append the element into the view
-      this.view.appendChild(audio);
+      // Append effects to the view
+      this.view.appendChild(clappingAudio);
+      this.view.appendChild(gameOverAudio);
+
+      // Memorize them into the cache
+      this.cacheDOM['clappingAudio'] = clappingAudio;
+      this.cacheDOM['gameOverAudio'] = gameOverAudio;
     },
 
-    loadGameOverAudio: function() {
+    playClappingAudio: function() {
+        this.cacheDOM['gameOverAudio'].play();
+    },
 
-      var audio = document.createElement( 'AUDIO' );
-      var failSrc = this.audioSettings['fail'];
-
-      audio.setAttribute( 'src' , failSrc );
-      audio.autoplay = true;
-
-      // Append the element into the view
-      this.view.appendChild(audio);
+    playGameOverAudio: function() {
+        this.cacheDOM['gameOverAudio'].play();
     },
 
     toggleAudioButton: function( isAudioEnabled ) {
@@ -346,6 +345,15 @@ var InfoViewModel = (function(window, undefined) {
         this.cacheDOM.toggleAudio.classList.remove( baseAudioClass + '-' + currentS );
         this.cacheDOM.toggleAudio.classList.add( baseAudioClass + '-' + newStatus );
         this.cacheDOM.toggleAudio.setAttribute( 'title', title + ' audio' );
+        this.setVolume();
+    },
+
+    setVolume: function() {
+        var self = this;
+        var audios = this.DOM.$$( 'audio' );
+        [].slice.call(audios).forEach(function(effect) {
+            effect.volume = self.model.getVolume();
+        });
     },
 
     // Connect the events broadcast by the Model to the View
@@ -372,7 +380,7 @@ var InfoViewModel = (function(window, undefined) {
         self.renderModalWinner();
 
         // Play Clapping Audio
-        self.loadClappingAudio();
+        self.playClappingAudio();
       }
 
       // Handle GAME OVER actions
@@ -385,7 +393,7 @@ var InfoViewModel = (function(window, undefined) {
         self.renderModalGameOver();
 
         // Play FAIL Audio
-        self.loadGameOverAudio();
+        self.playGameOverAudio();
       }
 
       // Handle clicks related to data-click HTML5 attributes
